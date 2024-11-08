@@ -27,6 +27,29 @@ jobs:
         with:
           terraform_version: 1.3.0
 
+      - name: Install Checkov
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install checkov
+
+      # Run Checkov for each module in Terraform
+      - name: Checkov - Static Code Analysis on EC2 Module
+        run: checkov -d ec2 || true
+
+      - name: Checkov - Static Code Analysis on Route Table Module
+        run: checkov -d route_table || true
+
+      - name: Checkov - Static Code Analysis on Security Group Module
+        run: checkov -d security_group || true
+
+      - name: Checkov - Static Code Analysis on Subnets Module
+        run: checkov -d subnets || true
+
+      - name: Checkov - Static Code Analysis on VPC Module
+        run: checkov -d vpc || true
+
+      #-----------------------------------------------------------------------
+
       # Initialize Terraform
       - name: Terraform Init
         id: init
