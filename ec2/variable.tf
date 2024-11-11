@@ -21,5 +21,5 @@ variable "private_sg_id" {
 variable "key-name" {
   description = "The Public Key to SSH"
   type        = string
-  default = "deployer-key"
+  default = "nam-huy-key"
 }
